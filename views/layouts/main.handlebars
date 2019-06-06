@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+	<title>Demo Page</title>
+    <link rel = "stylesheet"type = "text/css" href = "/static/style.css" />
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <ul>
+        <li><a href="warehouse">Manage Warehouses</a></li>
+        <li><a href="product">Manage Products</a></li>
+        <li><a href="driver">Manage Drivers</a></li>
+        <li><a href="customer">Manage Customers</a></li>
+        <li><a href="order">Manage Orders</a></li>
+    </ul>
+    {{{body}}}
+    {{#each jsscripts}}
+        <script src="/static/{{this}}"></script>
+    {{/each}}
+</body>
+</html>

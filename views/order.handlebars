@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>table, th, td {
+            border: 1px solid black;
+            }</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Orders</title>
+</head>
+<body>
+    <h3>Add New Order</h3>
+    <form id="addOrder" method="POST">
+        <label for="customerId">Customer ID:</label>
+        <select id="customerId" name="customerId">
+        {{#each customer}} 
+            <option value="{{id}}">{{id}}</option>
+        {{/each}} 
+        </select>
+        <label for="status">Status:</label>
+        <select id="status" name="status">
+            <option value="Processing">Processing</option>
+            <option value="In Transit">In Transit</option>
+            <option value="Delivered">Delivered</option>
+            <option value="Canceled">Canceled</option>
+        </select>
+        <label for="productId">Product ID:</label>
+        <select id="productId" name="productId">
+        {{#each product}} 
+            <option value="{{id}}">{{id}}</option>
+        {{/each}} 
+        </select>
+        <label for="quantity">Quantity:</label>
+        <input id="quantity" name="quantity" type="number" required>
+        <label for="targetDel">Requested Delivery Date:</label>
+        <input id="targetDel" name="targetDel" type="date">
+        <label for="driverId">Driver ID:</label>
+        <select id="driverId" name="driverId">
+        {{#each driver}} 
+            <option value="{{id}}">{{id}}</option>
+        {{/each}} 
+        </select>
+        <input id="insert" name="insert" value="insert" type="submit">
+    </form>
+    <h1>Search Orders</h1>
+    <form id="searchDrivers" method="POST">
+        <label for="searchType">Search by:</label>
+        <select name="searchType">
+            <option value="id">ID</option>
+            <option value="status">Status</option>
+            <option value="customerID">Customer ID</option>
+            <option value="driverID">Driver ID</option>
+        </select>
+        <input id="searchVal" name="searchVal" type="text">
+        <input id="select" name="select" value="select" type="submit">
+    </form>
+    <h1>Search Results</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Customer ID</th>
+            <th>Status</th>
+            <th>Product ID</th>
+            <th>Quantity</th>
+            <th>Delivery Date</th>
+            <th>Driver ID</th>
+            <th>UPDATE</th>
+            <th>DELETE</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each order}} 
+        <tr> 
+            <td>{{id}}</td> 
+            <td>{{customerID}}</td> 
+            <td>{{status}}</td> 
+            <td>{{productID}}</td>
+            <td>{{quantity}}</td>
+            <td>{{targetDel}}</td>
+            <td>{{driverID}}</td>
+            <td><button type="button" id="update{{id}}" onclick="updateOrder({{id}})">Update</button></td>
+            <td><button type="button" id="delete{{id}}" onclick="deleteOrder({{id}})">Delete</button></td>
+        </tr> 
+        {{/each}} 
+        </tbody>
+    </table>
+
+</body>
+</html>

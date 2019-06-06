@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>table, th, td {
+            border: 1px solid black;
+          }</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Warehouses</title>
+</head>
+<body>
+    <h2>Product list of Warehouse {{whID}}</h2>
+    <table>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        {{#each warehouse_product}} 
+        <tr>
+            <td>{{productID}}</td> 
+            <td>{{quantity}}</td> 
+            <td><button type="button" id="update{{productID}}" onclick="updateWarehouse_Product({{productID}}, {{warehouseID}})">Update</button></td>
+            <td><button type="button" id="delete{{productID}}" onclick="deleteWarehouse_Product({{productID}}, {{warehouseID}})">Delete</button></td>
+        </tr> 
+        {{/each}} 
+    </table>
+    <h4>Add new product to selected warehouse</h4>
+    <form id="addProductToWarehouse" method="POST">
+        <label for="addBy">Add by:</label>
+        <select name="addBy">
+            <option value="id">Product ID</option>
+            {{!--<option value="productName">Product Name</option>--}}
+        </select>
+        <input id="whID" type="hidden" name="warehouseID" value="{{whID}}">
+        <input id="productID" name="productID" type="text">
+        <label for="quantity">Quantity:</label>
+        <input id="quantity" name="quantity" type="number">
+        <input id="addProduct" name="addProduct" value="addProduct" type="submit">
+    </form>
+</body>
+</html>

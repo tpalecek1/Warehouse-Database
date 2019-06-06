@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>table, th, td {
+            border: 1px solid black;
+            }</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Products</title>
+</head>
+<body>
+    <h3>Add New Product</h3>
+    <form id="addProduct" method="POST">
+        <label for="name">Product Name:</label>
+        <input id="name" name="name" type="text" required>
+        <label for="size">Size(cu. ft):</label>
+        <input id="size" name="size" type="number">
+        <input id="insert" name="insert" value="insert" type="submit">
+    </form>
+    <h1>Search Products</h1>
+    <form id="searchProducts" method="POST">
+        <label for="searchVal">Product Name(leave blank for a list of all products):</label>
+        <input id="searchVal" name="searchVal" type="text">
+        <input id="select" name="select" value="select" type="submit">
+    </form>
+    <h1>Search Results</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Size(cu. ft.)</th>
+            <th>UPDATE</th>
+            <th>DELETE</th>
+        </tr>
+        {{#each product}}
+        <tr>
+          <td>{{id}}</td>
+          <td>{{name}}</td>
+          <td>{{size}}</td>
+          <td><button type="button" id="update{{id}}" onclick="updateProduct({{id}})">Update</button></td>
+          <td><button type="button" id="delete{{id}}" onclick="deleteProduct({{id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </table>
+</body>
+</html>
